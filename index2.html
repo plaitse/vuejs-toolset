@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+<script src="vue.js"></script>
+</head>
+<body>
+
+  <div id="exercise">
+      <p v-once>VueJS is pretty cool - {{ name }} ({{ age }})</p>
+      <p>{{ multiplyAge() }}</p>
+      <p>{{ random() }}</p>
+      <div>
+        <img v-bind:src="img" style="width:100px;height:100px">
+      </div>
+      <div>
+        <input type="text" v-bind:value="name">
+      </div>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#exercise',
+      data: {
+        name: 'Jesus',
+        age: 33,
+        img: 'https://pbs.twimg.com/profile_images/875996174305472512/upM71pVR_400x400.jpg'
+      },
+      methods: {
+        multiplyAge: function() {
+          return this.age * 3;
+        },
+        random: () => {
+          return Math.random().toFixed(2);
+        }
+      }
+    });
+  </script>
+</body>
+</html>
