@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+<script src="../vue.js"></script>
+</head>
+<body>
+
+  <div id="app">
+    <input type="text" v-model="name">
+    <p>{{ name }}</p>
+
+    <button v-on:click="counter++">Increase</button>
+    <button v-on:click="counter--">Decrease</button>
+    <p>Counter: {{ counter }}</p>
+    <p>Result: {{ output }}</p>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        name: 'Che',
+        counter: 0
+      },
+      computed: {
+        output() {
+          // Computed methods cache the result and only fire if DOM is updated
+          return this.counter > 5 ? 'Greater than 5' : 'Smaller than 5';
+        }
+      },
+      watch: {
+        counter(value) {
+          // Is called whenever the counter changes
+          const that = this;
+          setTimeout(() => {
+            that.counter = 0;
+          }, 2000);
+        }
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+<script src="../vue.js"></script>
+</head>
+<body>
+
+  <div id="app">
+    <ul>
+      <li v-for="ingredient in ingredients">{{ ingredient }}</li>
+    </ul>
+    <ul>
+      <li v-for="(ingredient, i) in ingredients">{{ ingredient }} ({{ i }})</li>
+    </ul>
+    <hr>
+    <ul>
+      <li v-for="person in persons">{{ person.name }}</li>
+    </ul>
+    <ul>
+      <li v-for="person in persons">
+        <span v-for="value in person">{{ value }}</span>
+      </li>
+    </ul>
+    <ul>
+      <li v-for="person in persons">
+        <div v-for="(value, key) in person">{{ key }} : {{ value }}</div>
+      </li>
+    </ul>
+    <ul>
+      <li v-for="person in persons">
+        <div v-for="(value, key, index) in person">{{ key }} : {{ value }} ({{ index }})</div>
+      </li>
+    </ul>
+    <hr>
+    <template v-for="(ingredient, index) in ingredients">
+      <h1>{{ ingredient }}</h1>
+      <p>{{ index }}</p>
+    </template>
+    <hr>
+    <span v-for="n in 10">{{ n }}</span>
+    <hr>
+    <ul>
+      <li v-for="(ingredient, i) in ingredients">{{ ingredient }} ({{ i }})</li>
+    </ul>
+    <button @click="ingredients.push('spices')">Add New</button>
+    <hr>
+    <ul>
+      <li v-for="(ingredient, i) in ingredients" :key="ingredient">{{ ingredient }} ({{ i }})</li>
+    </ul>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        ingredients: ['meat', 'fruit', 'cookies'],
+        persons: [
+          {name: 'Gandhi', age: 50, color:'red'},
+          {name: 'Mandela', age: 45, color:'blue'}
+        ]
+      }
+    });
+  </script>
+</body>
+</html>

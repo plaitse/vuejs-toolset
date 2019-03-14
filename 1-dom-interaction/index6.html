@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+<script src="../vue.js"></script>
+</head>
+<body>
+
+  <div id="app">
+    <!-- Shortcut for v-on:click -->
+    <button @click="changeLink">Click to change link</button>
+    <!-- Shortcut for v-bind:href -->
+    <a :href="link">Link</a>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        link: 'http://www.google.com'
+      },
+      methods: {
+        changeLink() {
+          this.link = 'http://www.apple.com'
+        }
+      }
+    });
+  </script>
+</body>
+</html>

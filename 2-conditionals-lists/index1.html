@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+<script src="../vue.js"></script>
+</head>
+<body>
+
+  <div id="app">
+    <!-- Remove or create element -->
+    <p v-if="show">You can see me!</p>
+    <p v-else>Do you also see me?</p>
+    <template v-if="show">
+      <h1>Heading</h1>
+      <p>Inside a template</p>
+    </template>
+    <!-- Display or not the element -->
+    <p v-show="show">Another paragraph</p>
+    <button @click="show = !show">Switch</button>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        show: true
+      }
+    });
+  </script>
+</body>
+</html>

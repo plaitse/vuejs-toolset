@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+<script src="../vue.js"></script>
+</head>
+<body>
+
+  <div id="exercise">
+    <div>
+      <button @click="show = !show">Toggle</button>
+      <p v-if="show">You either see me ...</p>
+      <p v-else>...or me</p>
+      <p v-show="show">You either see me ...</p>
+      <p v-show="!show">...or me</p>
+    </div>
+    <hr>
+    <ul v-for="(element, i) in array">
+      <li>{{ i }} : {{ element }}</li>
+    </ul>
+    <hr>
+    <ul v-for="(element, key, index) in myObject">
+      <li>{{ index }} : {{ key }} - {{ element }}</li>
+    </ul>
+    <hr>
+    <ul v-for="(element, key) in testData">
+      <li v-if="key == 'data'" >
+        <!-- Alternative : <li v-if="Array.isArray(element)"> -->
+        <template v-for="num in element">
+          <p>{{ num }}</p>
+        </template>
+      </li>
+      <li v-else>
+        {{ element }}
+      </li>
+    </ul>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#exercise',
+      data: {
+        show: true,
+        array: ['Paul', 'Anna', 'Chris', 'Manu'],
+        myObject: {
+          title: 'Lord of the Rings',
+          author: 'J.R.R. Tolkiens',
+          books: '3'
+        },
+        testData: {
+          name: 'TESTOBJECT', 
+          id: 10,
+          data: [1.67, 1.33, 0.98, 2.21]
+        }
+      }
+    });
+  </script>
+</body>
+</html>
