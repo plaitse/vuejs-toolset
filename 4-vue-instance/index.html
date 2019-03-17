@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+<script src="../vue.js"></script>
+</head>
+<body>
+
+  <div id="app1">
+    <h1 ref="heading">{{ title }}</h1>
+    <button @click="show" ref="myButton">Show Paragraph</button>
+    <p v-if="showParagraph">This is not always visible</p>
+  </div>
+
+  <div id="app2">
+    <h1>{{ title }}</h1>
+    <button @click="onChange">Change something in Vue 1</button>
+    <p v-if="showParagraph">This is not always visible</p>
+    <haaalo></haaalo>
+    <haaalo></haaalo>
+    <button @click="destroy">Destory Vue 1</button>
+  </div>
+
+  <div id="app3">
+  </div>
+
+  <script>
+    const data = {
+      title: 'The first instance',
+      showParagraph: false
+    }
+
+    Vue.component('haaalo', {
+      template: '<h1>Haaaaallo</h1>'
+    });
+
+    const v1 = new Vue({
+      data: data,
+      beforeCreate() {
+        console.log('beforeCreate');
+      },
+      created() {
+        console.log('created');
+      },
+      beforeMount() {
+        console.log('beforeMount');
+      },
+      mounted() {
+        console.log('mounted');
+      },
+      beforeUpdate() {
+        console.log('beforeUpdate');
+      },
+      updated() {
+        console.log('updated');
+      },
+      beforeDestroy() {
+        console.log('beforeDestroy');
+      },
+      destroyed() {
+        console.log('destroyed');
+      },
+      methods: {
+        show: function() {
+          this.showParagraph = true;
+          this.updateTitle('The VueJS Instance (Updated)');
+          this.$refs.myButton.innerText = 'Test';
+        },
+        updateTitle: function(title) {
+          this.title = title;
+        }
+      },
+      computed: {
+        lowercaseTitle: function() {
+          return this.title.toLowerCase();
+        }
+      },
+      watch: {
+        title: function(value) {
+          alert('Title changed, new value: ' + value);
+        }
+      }
+    });
+
+    v1.$mount('#app1');
+
+    setTimeout(() => {
+      v1.title = 'Changed by timer';
+    }, 3000);
+
+    // This won't affect the DOM because not inside VueJS's template (virtual DOM)
+    v1.$refs.heading.innerText = 'Something else';
+
+    const v2 = new Vue({
+      el: '#app2',
+      data: {
+        title: 'The second instance',
+        showParagraph: false
+      },
+      methods: {
+        onChange() {
+          v1.title = 'Changed!';
+        },
+        destroy() {
+          console.log('tessst')
+          v1.$destroy();
+        }
+      },
+    });
+
+    const v3 = new Vue({
+      template: '<h1>Hello</h1>'
+    });
+
+    // v3.$mount('#app3'); -> 1st solution : best practice
+    v3.$mount(); // 2nd solution : to avoid
+    document.getElementById('app3').appendChild(v3.$el);
+  </script>
+</body>
+</html>
