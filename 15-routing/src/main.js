@@ -10,6 +10,13 @@ const router = new VueRouter({
   mode: 'history' // by default : hash for hashtag
 });
 
+router.beforeEach( (to, from, next) => {
+  console.log('global beforeEach');
+  next(); // continues its journey
+  // next(false); will avort
+  // next('/'); to redirect
+});
+
 new Vue({
   el: '#app',
   router,
