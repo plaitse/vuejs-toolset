@@ -5,7 +5,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
-// axios.defaults.baseURL = 'https://vuejs-toolset.firebaseio.com';
+axios.defaults.baseURL = 'https://vuejs-toolset.firebaseio.com';
 // axios.defaults.headers.common['Authorization'] = 'azeaze';
 // axios.defaults.headers.get['Accepts'] = 'application/json';
 
