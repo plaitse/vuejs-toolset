@@ -1,5 +1,5 @@
 {
-  "name": "6-components",
+  "name": "19-form-validation",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -12,6 +12,7 @@
     "bootstrap": "^4.3.1",
     "vue": "^2.6.6",
     "vue-router": "^3.0.2",
+    "vuelidate": "^0.7.4",
     "vuex": "^3.1.0"
   },
   "devDependencies": {
